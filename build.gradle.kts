@@ -15,11 +15,6 @@ kotlin {
             kotlinOptions.jvmTarget = "11"
         }
     }
-    js(BOTH) {
-        browser {
-
-        }
-    }
     val hostOs = System.getProperty("os.name")
     val isMingwX64 = hostOs.startsWith("Windows")
     val nativeTarget = when {
