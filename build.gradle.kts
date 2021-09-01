@@ -1,5 +1,6 @@
 plugins {
     kotlin("multiplatform") version "1.5.30"
+    `maven-publish`
 }
 
 group = "com.example"
@@ -24,15 +25,22 @@ kotlin {
         else -> throw GradleException("Host OS is not supported in Kotlin/Native.")
     }
 
-    
     sourceSets {
         val commonMain by getting
         val commonTest by getting
         val jvmMain by getting
         val jvmTest by getting
-        val jsMain by getting
-        val jsTest by getting
         val nativeMain by getting
         val nativeTest by getting
+    }
+}
+
+publishing {
+    publications {
+        create<MavenPublication>("maven") {
+            artifactId = project.name
+
+            from(components["kotlin"])
+        }
     }
 }
